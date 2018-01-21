@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<script src="jquery.js"></script>
+	<title>Base 3</title>
+</head>
+<body>
+
+	<!-- ex1 -->
+	<form>
+    	<button type="button" name="button" id="clique-moi" >Clique-moi !</button>
+    	<textarea id="textArea1"></textarea>
+  	</form>
+
+  	<!-- ex2 -->
+
+  	<form>
+    	<button type="button" name="button" id="minus" >Minus !</button>
+    	<button type="button" name="button" id="plus" >Plus !</button>
+    	<textarea id="textArea2"></textarea>
+  	</form>
+
+  	<!-- ex 3 -->
+
+  	<form>
+    	<button type="button" name="button" id="devine" >Clique-moi !</button>
+    	<textarea id="textArea3"></textarea>
+  	</form>
+
+  	<!-- ex 4 -->
+
+  	<form>
+    	<button type="button" name="button" id="button1" >Augmente la hauteur !</button>
+    	<button type="button" name="button" id="button2" >Rectangle en vert</button>
+    	<button type="button" name="button" id="button3" >Couleurs initiales</button>
+    	<button type="button" name="button" id="button4" >Fait disparaître le rectangle</button>
+    	<button type="button" name="button" id="button5" >Fait réaparaître le rectangle</button>
+    	<div id="rectangle"></div>
+  	</form>
+
+    <!-- Ex 5 -->
+
+    <form id="ex6">
+      <button type="button" id="button6"></button>
+      <textarea></textarea>
+    </form>
+
+  <style type="text/css">
+  	#rectangle{
+  		width: 20px;
+  		height: 20px;
+  		background-color: blue;
+  	}
+
+    #ex6{
+      background-color: grey;
+      margin-top: 10px;
+      width: 160px;
+      position: relative;
+    }
+
+    #ex6 textarea{
+      width: 100px;
+    }
+
+    #ex6 button{
+      height: 20px;
+      background-color: yellow;
+    } 
+  </style>
+
+  <script>
+
+  	// Ex 1
+
+  	let numberOfClicks1 = 0;
+
+  	$('#clique-moi').on('click',function(){
+
+  		numberOfClicks1++;
+
+  		$('#textArea1').text(numberOfClicks1 + ' clicks');
+
+
+  	})
+
+  	// Ex 2
+
+  	let numberOfClicks2 = 0;
+
+  	$('#minus').on('click',function(){
+
+  		numberOfClicks2--;
+
+  		$('#textArea2').text(numberOfClicks2 + ' clicks');
+  	})
+
+  	$('#plus').on('click',function(){
+
+  		numberOfClicks2++;
+
+  		$('#textArea2').text(numberOfClicks2 + ' clicks');
+  	})
+
+  	// Ex 3
+
+  	let randomNumber = Math.floor(Math.random()*101);
+  	console.log(randomNumber);
+
+  	$('#devine').on('click',function(){
+
+  		if(textArea3.value>randomNumber){
+  			window.alert('c\'est moins');
+  		} else if(textArea3.value<randomNumber){
+  			window.alert('c\'est plus');
+  		} else {
+  			window.alert('Correct!!');
+  		}
+
+  	})
+
+  	/* $('#textArea3').on('click',function(){
+  		console.log('hi');
+  		$('#textArea3').value() = '';
+  	}) */
+
+
+  	// Ex 4
+
+    let rectangleWidth = $('#rectangle').width();
+  	/*$('#button1').on('click',function(){
+
+  		
+		  console.log(rectangleWidth);
+  		if(rectangleWidth<=90){
+  			
+        rectangleWidth += 10;
+
+  		} else{
+  			rectangleWidth = 10;
+  		}
+
+  		
+  		$('#rectangle').css('width', rectangleWidth);
+
+  	})*/
+
+    $('#button1').on('click',function(){
+
+      
+      console.log(rectangleWidth);
+      
+      $('#rectangle').css('width', function(){
+
+         if(rectangleWidth<=90){
+        
+          return rectangleWidth += 10;
+
+      } else{
+
+        return rectangleWidth = 10;
+
+      }
+      })
+
+    })
+
+
+
+    $('#button2').on('click',function(){
+
+      $('#rectangle').css('background-color','green');
+    })
+
+    $('#button3').on('click',function(){
+
+      $('#rectangle').css('background-color','blue');
+    })
+
+    $('#button4').on('click',function(){
+
+      $('#rectangle').hide();
+    })
+    $('#button5').on('click',function(){
+
+      $('#rectangle').show();
+    })
+
+    // Ex 5
+
+
+    window.addEventListener('keydown',function(event){
+      console.log(event.keyCode);
+      if(event.keyCode == 37){
+        $('#ex6').animate({
+            left: "-=10"
+        },1)
+      }else if(event.keyCode == 38){
+        $('#ex6').animate({
+              top: "-=10"
+        },1)
+      }else if(event.keyCode == 39){
+        $('#ex6').animate({
+              left: "+=10"
+        },1)
+      }else if(event.keyCode == 40){
+        $('#ex6').animate({
+              top: "+=10"
+        },1)
+      }else if(event.keyCode == 40 && event.keyCode == 39){
+        console.log('hello');
+        }
+    })
+
+
+  </script>
+
+</body>
+</html>
