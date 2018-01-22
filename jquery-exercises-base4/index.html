@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="jquery.js"></script>
+	<title>Base 4</title>
+</head>
+<body>
+	<div class="images">
+		<button type="button" id="scissor"><img src="images/ciseaux.jpeg"></button>
+		<button type="button" id="paper"><img src="images/paper.jpeg"></button>
+		<button type="button" id="stone"><img src="images/pierre.jpeg"></button>
+	</div>
+	<section>
+		<button type="button" id="Shifumi">Shifumi</button>
+		<ul>
+			<li>Victoires: <span id="victoires"></span></li>
+			<li>Défaites: <span id="defaites"></span></li>
+			<li>Egalité: <span id="egalite"></span></li>
+			<li>Pourcentage: <span id="pourcentage"></span></li>
+		</ul>
+		<ul>
+			<li>Your Choice: <span id="player"></span></li>
+			<li>Computer Choice: <span id="pc"></span></li>
+		</ul>
+
+	</section>
+
+	<div class="resultImages">
+		<img src="images/win2.jpg" id="winImage">
+		<img src="images/loss.png" id="lossImage">
+		<img src="images/draw.jpg" id="drawImage">
+	</div>
+
+	<style>
+		.images img{
+			width: 100%;
+			height: auto;
+		}
+
+		.images button{
+			width: 25%;
+			height: auto;
+		}
+
+		.images{
+			display: flex;
+			justify-content: space-around;
+		}
+
+		#Shifumi{
+			margin-top: 2%;
+			display: flex;
+			justify-content: center;
+			width: 20%;
+			height: 100px;
+			background-color: black;
+			color: grey;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		.resultImages img{
+			bottom: 0;
+			right: 0;
+			width: 30%;
+			height: auto;
+		}
+
+		.resultImages{
+			margin-top: 8%;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		section{
+			margin-top: 10%;
+			display: flex;
+			justify-content: space-around;
+		}
+	</style>
+
+	<script>
+
+		let array = ["pierre","papier","ciseaux"];
+		let randomNumber;
+		let computerChoice;
+		let playerChoice;
+		let wins = 0;
+		let losses = 0;
+		let draws = 0;
+		let ratio;
+		$('.resultImages img').hide();
+
+
+		$('#Shifumi').on('click',function(){
+			randomNumber = Math.round(Math.random()*2);
+			computerChoice = array[randomNumber];
+			comparing();
+		})
+
+		$('#scissor').on('click',function(){
+			playerChoice = "ciseaux";
+		})
+
+		$('#paper').on('click',function(){
+			playerChoice = "papier";
+		})
+
+		$('#stone').on('click',function(){
+			playerChoice = "pierre";
+		})
+
+		let comparing = function(){
+
+			$('.resultImages img').hide();
+			console.log('player choice: ' + playerChoice);
+			console.log('computer choice: ' + computerChoice);
+			if(playerChoice==computerChoice){
+
+				draws++;
+				$('#egalite').empty().append(draws);
+				$('#drawImage').show();
+
+			}else if(playerChoice=="papier"){
+
+				if(computerChoice == "ciseaux"){
+					losses++;
+					$('#defaites').empty().append(losses);
+					$('#lossImage').show();
+				}else if(computerChoice == "pierre"){
+					wins++;
+					$('#victoires').empty().append(wins);
+					$('#winImage').show();
+				}
+			}else if(playerChoice=="pierre"){
+
+				if(computerChoice == "papier"){
+					losses++;
+					$('#defaites').empty().append(losses);
+					$('#lossImage').show();
+				}else if(computerChoice == "ciseaux"){
+					wins++;
+					$('#victoires').empty().append(wins);
+					$('#winImage').show();
+				}
+			}else{
+
+				if(computerChoice == "pierre"){
+					losses++;
+					$('#defaites').empty().append(losses);
+					$('#lossImage').show();
+				}else if(computerChoice == "papier"){
+					wins++;
+					$('#victoires').empty().append(wins);
+					$('#winImage').show();
+				}
+			}
+
+			$('#player').empty().append(playerChoice);
+			$('#pc').empty().append(computerChoice);
+			ratio = wins/(losses+wins+draws);
+			$('#pourcentage').empty().append(ratio);
+
+		}
+
+
+
+		
+	</script>
+</body>
+</html>
