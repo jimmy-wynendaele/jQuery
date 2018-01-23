@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="jquery.js"></script>
+	<meta charset="utf-8">
+	<title>Exercice 3</title>
+</head>
+<body>
+	Nom: <input type="text" id="LastName"><br>
+	Prénom: <input type="text" id="FirstName"><br>
+	Addresse Email: <input type="text" id="Email"><br> 
+	Numéro de téléphone: <input type="text" id="number"><br> 
+	<input type="submit" name="Click Me">
+
+	<script>
+		
+		let mailCheck = "mail.com"
+		$('input[type=submit]').on('click',function(){
+			console.log('hello');
+			if($('#Email').val().indexOf("mail.com") == -1){
+				window.alert('type a valid email address');
+			}
+			if(isNaN($('#number').val())){
+				window.alert('type a valid number');
+			}
+
+			if(/^[a-zA-Z-ù]+$/.test($('#LastName').val())){
+				console.log('valid name');
+			}else{
+				window.alert('type valid last name');
+			}
+
+			if(/^[a-zA-Z-ù]+$/.test($('#FirstName').val())){
+				console.log('valid name');
+			}else{
+				window.alert('type valid firstname');
+			}
+		})
+
+	</script>
+</body>
+</html>

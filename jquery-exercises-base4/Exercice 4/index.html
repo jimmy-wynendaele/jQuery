@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="jquery.js"></script>
+	<meta charset="utf-8">
+	<title>Exercice 4</title>
+</head>
+<body>
+
+	nom: <input type="text" id="nameInput"><br>
+	prénom: <input type="text" id="firstNameInput"><br>
+	date de naissance: <input type="text" id="dateInput"><br>
+	lieu de naissance: <input type="text" id="placeInput"><br>
+	emploi: <input type="text" id="workInput"><br>
+	société: <input type="text" id="companyInput"><br>
+	Générer <input type="submit"><br>
+
+	<script>
+
+		let firstname;
+		let lastname;
+		let date;
+		let birthPlace;
+		let job;
+		let company;
+			
+		$('input[type=submit]').on('click',function(){
+			lastname = $('#nameInput');
+			firstname = $('#firstNameInput');
+			date = $('#dateInput');
+			birthPlace = $('#placeInput');
+			job = $('#workInput');
+			company = $('#companyInput');
+
+			window.alert(firstname.val() + ' ' + lastname.val() + ', né le ' + date.val() + ', à ' + birthPlace.val() + ', actuellement ' + job.val() + ' à ' + company.val());
+		})
+
+	</script>
+
+
+</body>
+</html>

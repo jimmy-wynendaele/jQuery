@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<script src="jquery.js"></script>
+	<meta charset="utf-8">
+	<title>Exercice 2</title>
+</head>
+<body>
+	<div id="data">
+		Salary: 
+		<input type="text" id="salaryInput"><br>
+		Gender: <br>
+		Male:<input type="radio" name="gender" value="Male">
+		Female:<input type="radio" name="gender" value="Female">
+		Other:<input type="radio" name="gender" value="Other"><br>
+		Children:
+		<input type="text" id="childrenInput"><br>
+		<input type="submit" id="submitButton"><br>
+		Net Salary:<br>
+	</div>
+		<textarea></textarea>
+
+	<script>
+		let salary = $('#salaryInput').val();
+		let radioObject = $('input[type=radio]');
+		let gender = $('input[type=radio]:checked').val();
+		let children = $('#childrenInput').val();
+		let charges = 0.18;
+		let	assurance = 0.07;
+		let	cotisations = 0.05;
+		let reduction;
+		let netSalary;
+
+		
+
+		$('#submitButton').on('click',function(){
+
+			reduction = 0;
+			salary = $('#salaryInput').val();
+			radioObject = $('input[type=radio]');
+			gender = $('input[type=radio]:checked').val();
+			children = $('#childrenInput').val();
+
+			if(gender == "Female"){
+				reduction+=0.02;
+			}
+
+			if(children == 3){
+				reduction+=0.01;
+			}
+
+			if(children == 4){
+				reduction+=0.02;
+			}
+
+			netSalary = salary-((charges+assurance+cotisations) - reduction)*salary;
+			console.log($('input[type=radio]'));
+			console.log(gender);
+			console.log(reduction);
+			console.log(salary);
+			console.log(netSalary);
+			$('textarea').text(netSalary);	
+			reduction = 0;
+			
+		})
+	</script>
+</body>
+</html>
