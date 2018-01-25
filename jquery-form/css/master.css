@@ -8,3 +8,11 @@
 form {
     padding: 10px;
 }
+
+.wrongInput{
+	border: solid red 2px;
+}
+
+.correctInput{
+	border: 2px solid green;
+}
